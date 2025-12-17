@@ -34,13 +34,39 @@ function cambiarPagina(id) {
 // -------------------------------------------------------------
 // NAV SUPERIOR – sincroniza con el sistema de páginas
 // -------------------------------------------------------------
-document.querySelectorAll("nav a").forEach(link => {
-    link.addEventListener("click", e => {
-        e.preventDefault(); // 🚫 evita el salto por hash
+window.addEventListener("DOMContentLoaded", () => {
 
-        const id = link.getAttribute("href").replace("#", "");
-        cambiarPagina(id);
+    // 1) Posicionar la página inicial sin transición
+    cambiarPagina("inicio");
+
+    // 2) Activar las transiciones en el siguiente ciclo de renderizado
+    requestAnimationFrame(() => {
+        document.body.classList.add("ready");
     });
+
+    // -------------------------------------------------------------
+    // NAV SUPERIOR – desktop (páginas) / mobile (scroll)
+    // -------------------------------------------------------------
+    document.querySelectorAll("nav a").forEach(link => {
+        link.addEventListener("click", e => {
+            const id = link.getAttribute("href").replace("#", "");
+            const esMobile = window.matchMedia("(max-width: 768px)").matches;
+
+            e.preventDefault();
+
+            if (esMobile) {
+                // 📱 Mobile → scroll natural
+                document.getElementById(id)?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            } else {
+                // 🖥 Desktop → sistema de páginas
+                cambiarPagina(id);
+            }
+        });
+    });
+
 });
 
 // -------------------------------------------------------------
