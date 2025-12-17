@@ -199,6 +199,8 @@
         transform: none !important;
         color: #2f3002 !important;
         display: block !important;
+        line-height: 1.5;
+        font-size: 0.95rem;
     }
     /* Forzar visibilidad cuando el JS activa la página */
     #sobre .sobre-page[style*="display: block"] {
@@ -268,3 +270,4 @@
     }
 
 }
+
