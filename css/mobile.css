@@ -253,7 +253,7 @@
 
        /* 📖 LIBRO MÁS ALTO */
     #sobre .sobre-book {
-        height: 700px;
+        height: 750px;
     }
 
     /* 📄 PÁGINA APROVECHA MÁS ESPACIO */
@@ -266,4 +266,5 @@
         line-height: 1.5;
         font-size: 0.95rem;
     }
+
 }
