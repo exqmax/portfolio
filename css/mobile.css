@@ -131,7 +131,7 @@
     ===================================================== */
     #sobre .sobre-book {
         width: 90%;
-        height: 600px; /* Altura fija o relativa para evitar colapsos */
+        height: 750px; /* Altura fija o relativa para evitar colapsos */
         margin: 0 auto;
         border-radius: 20px;
         background: #f7f4ea; /* Color de fondo del papel */
@@ -201,6 +201,7 @@
         display: block !important;
         line-height: 1.5;
         font-size: 0.95rem;
+        padding: 40px 28px !important;
     }
     /* Forzar visibilidad cuando el JS activa la página */
     #sobre .sobre-page[style*="display: block"] {
@@ -270,4 +271,5 @@
     }
 
 }
+
 
