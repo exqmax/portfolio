@@ -1,0 +1,244 @@
+/* ============================================================
+   CONTENEDOR PRINCIPAL DE LA SECCIÓN "SOBRE"
+   ============================================================ */
+#sobre .sobre-stage {
+    width: 100%;                  /* Ocupa todo el ancho disponible */
+    min-height: 100vh;            /* Altura mínima igual al alto de la pantalla */
+    display: flex;                /* Para centrar el contenido */
+    justify-content: center;      /* Centra horizontalmente el libro */
+    align-items: flex-start;      /* Alinea el libro arriba (no centrado vertical) */
+    padding: 40px 0 20px 0;       /* Espacio arriba y abajo del libro */
+    position: relative;           /* Necesario para permitir elementos absolutos dentro */
+}
+
+/* ============================================================
+   CONTENEDOR DEL LIBRO (el área donde están videos + páginas)
+   ============================================================ */
+#sobre .sobre-book {
+    width: 1200px;                /* Ancho del libro completo */
+    height: 750px;                /* Alto del libro (igual al video) */
+    position: relative;           /* Permite posicionar elementos internos de forma absoluta */
+    perspective: 2000px;          /* Perspectiva 3D para animaciones de página */
+    margin-top: 0;                /* Sin margen superior */
+    border-radius: 60px;      /* más o menos ovalado */
+    overflow: hidden;         /* recorta el video dentro del borde*/
+}
+
+/* ============================================================
+   CAPAS DE LOS VIDEOS (Video A + Video B para hacer crossfade)
+   ============================================================ */
+#sobre .sobre-video-layer {
+     /* === Difuminado lateral + superior + inferior === */    
+    mask-image:
+        /* LADOS */
+        linear-gradient(to right,
+            transparent 0%,
+            black 12%,
+            black 88%,
+            transparent 100%
+        ),
+
+        /* ARRIBA */
+        linear-gradient(to bottom,
+            transparent 0%,
+            black 15%,
+            black 100%
+        ),
+
+        /* ABAJO */
+        linear-gradient(to top,
+            transparent 0%,
+            black 15%,
+            black 100%
+        );
+
+    mask-composite: intersect; /* ← ESTA VA FUERA DE mask-image */
+    -webkit-mask-composite: source-in; /* Para compatibilidad con Chrome */
+    
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s;
+}
+
+/* Video visible al inicio */
+#sobreVideoA { 
+    opacity: 1;                   /* Totalmente visible */
+    z-index: 30;                  /* Encima del otro video */
+}
+
+/* Video oculto al inicio */
+#sobreVideoB { 
+    opacity: 0;                   /* Oculto */
+    z-index: 29;                  /* Debajo del video A */
+}
+
+/* ============================================================
+   BOTONES DE NAVEGACIÓN (Flechas ← y →)
+   ============================================================ */
+#sobrePrev, #sobreNext {
+    position: absolute;           /* Ubicados encima del libro */
+    top: 50%;                     /* Centrado verticalmente */
+    transform: translateY(-50%);  /* Ajusta el centrado exacto */
+    padding: 14px 20px;           /* Tamaño del botón */
+    background: rgba(0,0,0,0.4);  /* Fondo translúcido */
+    border: none;                 /* Sin borde */
+    color: white;                 /* Color del texto */
+    font-size: 20px;              /* Tamaño de la flecha */
+    border-radius: 8px;           /* Bordes redondeados */
+    z-index: 200;                 /* Encima del video */
+    cursor: pointer;              /* Manito al pasar */
+}
+
+/* Botón izquierdo */
+#sobrePrev { 
+    left: 20px; 
+}
+
+/* Botón derecho */
+#sobreNext { 
+    right: 20px; 
+}
+
+/* Hover para ambos */
+#sobrePrev:hover, #sobreNext:hover {
+    background: rgba(0,0,0,0.7);  /* Más oscuro al pasar el mouse */
+}
+
+/* ============================================================
+   TEXTO MÁGICO (animación que aparece tras abrir el libro)
+   ============================================================ */
+#sobreMagicText {
+    position: absolute;           /* Flota encima del video */
+    top: 35%;                     /* Posición vertical */
+    left: 50%;                    /* Centrando horizontalmente */
+    transform: translate(-50%, -50%);
+    opacity: 0;                   /* Oculto al inicio */
+    transition: opacity 1.6s ease-in-out; /* Animación suave */
+    pointer-events: none;         /* No bloquea clics */
+    z-index: 999;                 /* Muy por encima del video */
+}
+
+/* Cuando el sobre.JS activa su animación */
+#sobreMagicText.fade-in {
+    opacity: 1;
+}
+
+/* ============================================================
+   CONTENEDOR PRINCIPAL DE TODAS LAS PÁGINAS DEL LIBRO
+   ============================================================ */
+#sobre .sobre-pages {
+    position: absolute;           /* Se posiciona dentro del libro */
+    top: 54%;                     /* Posición vertical ajustada para que quede dentro del video */
+    left: 50%;                    /* Centrado */
+    width: 70%;                   /* Ancho total del bloque de páginas */
+    transform: translate(-50%, -50%);
+    position: relative;           /* Necesario para que funcione el z-index */
+    display: none;                /* Oculto hasta que el JS muestra la página */
+    gap: 20px;                    /* Espacio entre páginas */
+    justify-content: space-between; /* Sepáralas a izquierda y derecha */
+    z-index: 5000;                /* Muy por encima del video */
+    opacity: 0;                   /* Oculto hasta aparecer */
+}
+
+/* ============================================================
+   ESTILO PARA CADA PÁGINA INDIVIDUAL
+   ============================================================ */
+#sobre .sobre-page {
+    width: 48%;                   /* Cada página ocupa casi la mitad del doble */
+    position: relative;           /* Para manipular niveles */
+    z-index: 9999;                /* Asegura que está encima del video */
+}
+
+/* ============================================================
+   TEXTO DENTRO DE CADA PÁGINA DEL LIBRO
+   ============================================================ */
+#sobre .sobre-text {
+    margin-top: -40px;
+    color: #2f3002;
+    text-align: center;
+    font-size: 1.3rem;
+    text-shadow: 0 0 15px rgba(255,255,255,0.8);
+}
+
+.small {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+/* ============================================================
+   CONTENEDOR PARA DOBLE PÁGINA (2 páginas lado a lado)
+   ============================================================ */
+#sobre .sobre-double {
+    width: 100%;                  /* Ocupa todo el bloque */
+    display: flex;                /* Coloca las páginas en fila */
+    justify-content: space-between; /* Una a la izquierda, otra a la derecha */
+    gap: 30px;                    /* Separación entre páginas */
+    opacity: 0;                   /* Ocultas hasta mostrarse */
+    display: none;                /* El JS decide cuándo mostrarlas */
+}
+
+/* ============================================================
+   ESTILO DE CADA PÁGINA DENTRO DEL DOBLE-PÁGINA
+   ============================================================ */
+#sobre .sobre-double .sobre-page {
+    width: 80%;                   /* Hace más anchas las páginas interiores */
+}
+
+/* ============================================================
+   ANIMACIÓN SUAVE DE APARICIÓN DE PÁGINAS (tipo "magic text")
+   ============================================================ */
+
+/* Estado inicial del texto */
+#sobre .sobre-text {
+    opacity: 0;                     /* Oculto */
+    filter: blur(16px);             /* Desenfoque inicial */
+    transition: opacity 1.3s ease, filter 1.4s ease;
+}
+
+
+/* =====================================================
+   DESAPARICIÓN SUAVE DEL TEXTO
+   (misma animación que page-appear pero inversa)
+===================================================== */
+
+.page-disappear {
+    animation: pageFadeOut 1.2s ease-in forwards;
+}
+
+@keyframes pageFadeOut {
+    0% {
+        opacity: 1;
+        filter: blur(0px);
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        filter: blur(18px);
+        transform: translateY(-6px);
+    }
+}
+
+/* Clase que activa la aparición (el JS la agrega) */
+.page-appear {
+    animation: pageFadeIn 1.8s ease-out forwards;
+}
+
+/* Animación suave desde invisible + muy borroso → visible y nítido */
+@keyframes pageFadeIn {
+    0% {
+        opacity: 0.05;            /* Casi invisible */
+        filter: blur(18px);       /* Muy borroso */
+        transform: translateY(10px); /* Leve desplazamiento hacia abajo */
+    }
+    40% {
+        opacity: 0.35;            /* Empieza a aparecer */
+        filter: blur(10px);       /* Menos borroso */
+    }
+    100% {
+        opacity: 1;               /* Totalmente visible */
+        filter: blur(0px);        /* Completamente nítido */
+        transform: translateY(0); /* Posición final */
+    }
+}

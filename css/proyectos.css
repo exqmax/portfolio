@@ -1,0 +1,166 @@
+/* ============================================================
+   SECCIÓN PROYECTOS (GENERAL)
+   Define el espaciado y el contexto visual de la sección
+============================================================ */
+#proyectos {
+    padding: 80px 60px;          /* Espaciado interno superior/inferior y laterales */
+    color: #eaeaf0;              /* Color base (se redefine en textos específicos) */
+}
+
+/* ============================================================
+   TÍTULO PRINCIPAL
+============================================================ */
+.proyectos-title {
+    text-align: center;          /* Centra el título */
+    font-size: 42px;             /* Tamaño destacado */
+    margin-bottom: 10px;
+    color: #000000;              /* Negro puro */
+}
+
+/* ============================================================
+   SUBTÍTULO
+============================================================ */
+.proyectos-subtitle {
+    text-align: center;
+    max-width: 700px;            /* Limita el ancho para buena lectura */
+    margin: 0 auto 60px;         /* Centrado + espacio inferior */
+    font-size: 1.1rem;
+    color: #222222;              /* Negro suave */
+    opacity: 1;                  /* Sin transparencia */
+}
+
+/* ============================================================
+   CONTENEDOR PRINCIPAL DE TARJETAS (GRID)
+            CLAVE DEL DISEÑO 
+============================================================ */
+.proyectos-container {
+    display: grid;
+
+    /* EXACTAMENTE 4 tarjetas por fila */
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 40px;                   /* Espacio entre tarjetas */
+    max-width: 1400px;           /* Limita el ancho total */
+    margin: 0 auto;              /* Centrado horizontal REAL */
+    padding: 60px 40px;
+
+    justify-items: center;       /* 🔥 Centra cada tarjeta dentro de su columna */
+}
+
+/* ============================================================
+   TARJETA INDIVIDUAL
+============================================================ */
+.proyecto-card {
+    width: 100%;                 /* Ocupa toda su columna */
+    max-width: 320px;            /* Evita tarjetas demasiado anchas */
+
+    background: rgba(255,255,255,0.04); /* Fondo tipo glass */
+    border-radius: 16px;
+    overflow: hidden;            /* Recorta imagen y bordes */
+    backdrop-filter: blur(8px);  /* Efecto vidrio */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover elegante */
+.proyecto-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+}
+
+/* ============================================================
+   IMAGEN DEL PROYECTO
+============================================================ */
+.proyecto-img {
+    position: relative;          /* Necesario para el badge */
+}
+
+.proyecto-img img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;           /* Recorte limpio */
+}
+
+/* ============================================================
+   BADGE (ej: Fullstack)
+============================================================ */
+.proyecto-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+
+    background: rgba(90,120,255,0.9);
+    color: #ffffff;
+    padding: 6px 10px;
+    border-radius: 8px;
+
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* ============================================================
+   CUERPO DEL PROYECTO
+============================================================ */
+.proyecto-body {
+    padding: 18px;
+}
+
+/* Título del proyecto */
+.proyecto-body h3 {
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1e2a5a;              /* Azul oscuro */
+}
+
+/* Descripción */
+.proyecto-body p {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    color: #444444;              /* Gris oscuro */
+    opacity: 1;
+}
+
+/* ============================================================
+   TECNOLOGÍAS
+============================================================ */
+.proyecto-tech {
+    display: flex;
+    flex-wrap: wrap;             /* Permite varias líneas */
+    gap: 8px;
+}
+
+.proyecto-tech span {
+    background: #f1f1f1;
+    color: #555555;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+/* Pantallas medianas: 3 columnas */
+@media (max-width: 1200px) {
+    .proyectos-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Tablets: 2 columnas */
+@media (max-width: 900px) {
+    .proyectos-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile: 1 columna */
+@media (max-width: 600px) {
+    .proyectos-container {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,109 @@
+/* ==========================
+   SECCIÓN CONTACTO
+========================== */
+#contacto {
+    background: #ffeef5;
+}
+
+
+/* ==========================
+   FORMULARIO
+========================== */
+#form-contacto {
+    width: 100%;
+    max-width: 600px;       /* Ancho máximo cómodo */
+    margin: auto;           /* Centrado horizontal */
+    display: flex;
+    flex-direction: column; /* Elementos en columna */
+}
+
+
+/* ==========================
+   INPUTS Y TEXTAREA
+========================== */
+#form-contacto input,
+#form-contacto textarea {
+    padding: 14px;
+    margin: 8px 0;
+    font-size: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-family: inherit;
+}
+
+/* Textarea sin resize manual (crece por JS) */
+#form-contacto textarea {
+    resize: none;
+}
+
+
+/* ==========================
+   CONTADOR DE CARACTERES
+========================== */
+#contador {
+    font-size: 12px;
+    opacity: 0.7;
+    text-align: right;
+}
+
+
+/* ==========================
+   BOTÓN ENVIAR
+========================== */
+#form-contacto button {
+    margin-top: 15px;
+    padding: 14px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+
+    display: none;          /* Oculto al inicio */
+}
+
+/* Hover solo cuando está habilitado */
+#form-contacto button:not(:disabled):hover {
+    background: #333;
+}
+
+/* Estado deshabilitado */
+#form-contacto button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* ==========================
+   MENSAJES DE ERROR
+========================== */
+.error {
+    color: crimson;
+    font-size: 13px;
+    min-height: 16px;       /* Evita saltos visuales */
+}
+
+
+/* ==========================
+   MENSAJE FINAL
+========================== */
+#resultado {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* ==========================
+   ICONOS SOCIALES – DESKTOP
+========================== */
+.contacto-social {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.contacto-social img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}

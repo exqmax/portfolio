@@ -1,0 +1,98 @@
+/* CONTENEDOR GENERAL */
+#tecnologias {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+#tecnologias .tec-title {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+#tecnologias .tec-subtitle {
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/* GRID PRINCIPAL */
+#tecnologias .tec-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 35px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* TARJETAS */
+#tecnologias .tec-card {
+    background: #e4f7ff;
+    padding: 25px;
+    border-radius: 14px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 15px rgba(153, 243, 247, 0.979);
+}
+
+#tecnologias .tec-card h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #4fc3f7; /* celeste suave */
+}
+
+/* ÍCONOS DENTRO DE LAS TARJETAS */
+#tecnologias .tec-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+}
+
+#tecnologias .tec-icons img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    transition: transform 0.25s ease;
+}
+
+#tecnologias .tec-icons img:hover {
+    transform: scale(2.3);  /* Aumenta el tamaño del icono al pasar el mouse */
+}
+/* ANIMACIÓN DE GLOW NEÓN */
+@keyframes neonPulse {
+    0% {
+        box-shadow: 0 0 5px #4fc3f7, 0 0 10px #4fc3f7;
+    }
+    50% {
+        box-shadow: 0 0 15px #4fc3f7, 0 0 30px #4fc3f7;
+    }
+    100% {
+        box-shadow: 0 0 5px #4fc3f7, 0 0 10px #4fc3f7;
+    }
+}
+
+/* NEÓN AL PASAR EL MOUSE */
+#tecnologias .tec-card:hover {
+    animation: neonPulse 1.5s infinite alternate;
+    transform: translateY(-4px);
+    transition: 0.2s;
+}
+
+/* LETRAS CON EFECTO NEÓN SOLO EN LA TARJETA ACTIVA */
+#tecnologias .tec-card:hover h2,
+#tecnologias .tec-card:hover p {
+    color: #0a2a43; /* azul oscuro elegante */
+    text-shadow: 
+        0 0 6px #4fc3f7,
+        0 0 12px #4fc3f7,
+        0 0 24px #4fc3f7;
+    transition: 0.2s;
+}
+
+/* RESPONSIVE */
+@media (max-width: 800px) {
+    #tecnologias .tec-grid {
+        grid-template-columns: 1fr;
+    }
+}

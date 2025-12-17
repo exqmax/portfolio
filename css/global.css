@@ -1,0 +1,82 @@
+/* --- BASE GENERAL --- */
+body {
+    margin: 0; /* Quita los márgenes por defecto del navegador */
+    font-family: Arial, sans-serif; /* Define la fuente principal del sitio */
+     overflow: hidden; /* el body NO scrollea */
+}
+
+/* ==========================
+   NAV SUPERIOR – BOTONES
+========================== */
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    padding: 14px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    z-index: 1000;
+}
+
+/* Links como botones */
+nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    padding: 10px 16px;
+    border-radius: 999px; /* pill button */
+    background: rgba(255, 255, 255, 0.08);
+    transition: 
+        background 0.25s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    position: relative;
+}
+
+/* Hover */
+nav a:hover {
+    background: rgba(255, 255, 255, 0.18);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+/* Click */
+nav a:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Accesibilidad */
+nav a:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+
+
+.page {
+    width: 100%; /* Ancho igual al 100% de la ventana del navegador */
+    height: 100vh; /* Altura igual al 100% de la ventana del navegador */
+    position: absolute; /* Posicionamiento absoluto respecto al body */
+    top: 0; /* Parte superior alineada al borde del body */
+    left: 0; /* Parte izquierda alineada al borde del body */
+    padding-top: 80px; /* Deja espacio arriba para que no quede debajo del nav */
+    text-align: center; /* Centra el contenido dentro de la página */
+    box-sizing: border-box; /* Incluye el padding dentro del ancho y alto */
+    
+    overflow-y: auto;  /* 🔥 SCROLL INTERNO */
+    overflow-x: hidden;
+
+    /* Sin animaciones hasta que el body tenga la clase ready */
+    transition: none; /* Inicialmente no hay transición */
+    transform: translateX(0); /* Posición inicial en X */
+}
+
+/* Activación de las transiciones una vez cargado */
+body.ready .page {
+    transition: transform 0.7s ease-in-out !important; /* Aplica animación de desplazamiento al mover la página */
+}

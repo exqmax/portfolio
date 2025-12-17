@@ -1,0 +1,52 @@
+/* ---- Estilo general de las flechas ---- */
+.flecha {
+    position: fixed; /* Fija la flecha en la pantalla, sin importar el scroll */
+    top: 50%; /* La coloca verticalmente al centro de la pantalla */
+    transform: translateY(-50%); /* Ajusta el centro exacto vertical */
+    font-size: 3rem; /* Tamaño grande para el ícono o símbolo de flecha */
+    color: #000; /* Color negro del icono/texto */
+    background: rgba(255,255,255,0.85); /* Fondo blanco semitransparente */
+    padding: 8px 10px; /* Espaciado interno para que el botón sea visible y clickeable */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2); /* Sombra para dar profundidad */
+    cursor: pointer; /* Cambia el cursor a mano al pasar sobre la flecha */
+    opacity: 0.9; /* Ligera transparencia */
+    transition: opacity 0.25s ease, transform 0.25s ease; /* Animación suave para hover y transformaciones */
+    z-index: 9999; /* Se asegura de que la flecha esté por encima de casi todo */
+    animation: pulso 1.3s infinite ease-in-out; /* Animación de pulso continuo */
+    user-select: none; /* Evita que se seleccione el texto/icono de la flecha */
+}
+
+/* Flecha izquierda */
+#flecha-izq { 
+    left: 18px; /* Se posiciona a 18px del borde izquierdo de la pantalla */
+}
+
+/* Flecha derecha */
+#flecha-der { 
+    right: 18px; /* Se posiciona a 18px del borde derecho de la pantalla */
+}
+
+/* ---- Animación ---- */
+@keyframes pulso {
+    0%   { transform: translateY(-50%) scale(1); }     /* Estado inicial: centrado, tamaño normal */
+    50%  { transform: translateY(-50%) scale(1.12); }  /* Escala un poco para dar efecto de "latido" */
+    100% { transform: translateY(-50%) scale(1); }     /* Vuelve al tamaño normal */
+}
+
+/* Hover */
+.flecha:hover {
+    transform: translateY(-50%) scale(1.18); /* Al pasar el cursor, se hace más grande */
+    opacity: 1; /* Se vuelve completamente opaca */
+}
+
+/* ---- ESTADO DESHABILITADO ---- */
+.flecha.deshabilitada {
+    opacity: 0.18 !important; /* Muy transparente para indicar que no está activa */
+    pointer-events: none !important; /* No permite clics ni interacción */
+    animation: none !important; /* Desactiva la animación de pulso */
+    transform: translateY(-50%) scale(1) !important; /* Vuelve a tamaño normal */
+    background: rgba(255,255,255,0.6) !important; /* Fondo más tenue */
+    color: rgba(0,0,0,0.6) !important; /* Texto/icono más tenue */
+    box-shadow: none !important; /* Sin sombra */
+}
